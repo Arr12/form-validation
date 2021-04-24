@@ -1,0 +1,249 @@
+<!-- 
+NAMA : MUCHAMMAD ARYO PURUHITO
+NIM : 04317023
+PRODI : TEKNIK INFORMATIKA
+-->
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Validasi Input</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <section class="p-3">
+      <div class="card">
+        <div class="card-header">
+          <h1>Form Validation</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 my-1">
+              <input
+                id="username"
+                type="text"
+                placeholder="Username"
+                class="form-control"
+                title="Not more than 7 Character Username"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="col-sm-6">
+              <span
+                id="7charusername"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              Not more than 7 Characters Long
+            </div>
+            <div class="col-md-12 my-1">
+              <input
+                id="password1"
+                type="password"
+                placeholder="Input Password"
+                title="8 Character Password, Use Uppercase, Lowercase, Numeric, and any Symbols"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-sm-6">
+              <span
+                id="8char"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              8 Characters Long<br />
+              <span
+                id="ucase"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              Uppercase Letter
+            </div>
+            <div class="col-sm-6">
+              <span
+                id="lcase"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              Lowercase Letter<br />
+              <span
+                id="num"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              Number
+            </div>
+            <div class="col-sm-6">
+              <span
+                id="symbols"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              Symbols
+            </div>
+            <div class="col-md-12 my-1">
+              <input
+                id="password2"
+                type="password"
+                placeholder="Re-type Password"
+                title="please re-type your password"
+                class="form-control"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="col-sm-6">
+              <span
+                id="pwmatch"
+                class="glyphicon glyphicon-remove"
+                style="color: #ff0004"
+              ></span>
+              Password Match
+            </div>
+          </div>
+          <button
+            class="btn btn-primary my-1"
+            id="button_sign"
+            type="button"
+            disabled
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script>
+      let a_button_status_x = 0;
+      $("#username").keyup(function () {
+        let button_status_x = 0;
+        if ($(this).val().length <= 7) {
+          $("#7charusername").removeClass("glyphicon-remove");
+          $("#7charusername").addClass("glyphicon-ok");
+          $("#7charusername").css("color", "#00A41E");
+          button_status_x += 1;
+        } else {
+          $("#7charusername").removeClass("glyphicon-ok");
+          $("#7charusername").addClass("glyphicon-remove");
+          $("#7charusername").css("color", "#FF0004");
+          button_status_x -= 1;
+        }
+        a_button_status_x = button_status_x;
+      });
+      $("input[type=password]").keyup(function () {
+        let button_status = 0;
+        let regex = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g;
+        let ucase = new RegExp("[A-Z]+");
+        let lcase = new RegExp("[a-z]+");
+        let num = new RegExp("[0-9]+");
+        let symbols = new RegExp(regex);
+
+        if ($("#password1").val().length >= 8) {
+          $("#8char").removeClass("glyphicon-remove");
+          $("#8char").addClass("glyphicon-ok");
+          $("#8char").css("color", "#00A41E");
+          button_status += 1;
+        } else {
+          $("#8char").removeClass("glyphicon-ok");
+          $("#8char").addClass("glyphicon-remove");
+          $("#8char").css("color", "#FF0004");
+          button_status -= 1;
+        }
+
+        if (ucase.test($("#password1").val())) {
+          $("#ucase").removeClass("glyphicon-remove");
+          $("#ucase").addClass("glyphicon-ok");
+          $("#ucase").css("color", "#00A41E");
+          button_status += 1;
+        } else {
+          $("#ucase").removeClass("glyphicon-ok");
+          $("#ucase").addClass("glyphicon-remove");
+          $("#ucase").css("color", "#FF0004");
+          button_status -= 1;
+        }
+
+        if (lcase.test($("#password1").val())) {
+          $("#lcase").removeClass("glyphicon-remove");
+          $("#lcase").addClass("glyphicon-ok");
+          $("#lcase").css("color", "#00A41E");
+          button_status += 1;
+        } else {
+          $("#lcase").removeClass("glyphicon-ok");
+          $("#lcase").addClass("glyphicon-remove");
+          $("#lcase").css("color", "#FF0004");
+          button_status -= 1;
+        }
+
+        if (num.test($("#password1").val())) {
+          $("#num").removeClass("glyphicon-remove");
+          $("#num").addClass("glyphicon-ok");
+          $("#num").css("color", "#00A41E");
+          button_status += 1;
+        } else {
+          $("#num").removeClass("glyphicon-ok");
+          $("#num").addClass("glyphicon-remove");
+          $("#num").css("color", "#FF0004");
+          button_status -= 1;
+        }
+
+        if (symbols.test($("#password1").val())) {
+          $("#symbols").removeClass("glyphicon-remove");
+          $("#symbols").addClass("glyphicon-ok");
+          $("#symbols").css("color", "#00A41E");
+          button_status += 1;
+        } else {
+          $("#symbols").removeClass("glyphicon-ok");
+          $("#symbols").addClass("glyphicon-remove");
+          $("#symbols").css("color", "#FF0004");
+          button_status -= 1;
+        }
+
+        if ($("#password1").val() == $("#password2").val()) {
+          $("#pwmatch").removeClass("glyphicon-remove");
+          $("#pwmatch").addClass("glyphicon-ok");
+          $("#pwmatch").css("color", "#00A41E");
+          button_status += 1;
+        } else {
+          $("#pwmatch").removeClass("glyphicon-ok");
+          $("#pwmatch").addClass("glyphicon-remove");
+          $("#pwmatch").css("color", "#FF0004");
+          button_status -= 1;
+        }
+        if (a_button_status_x == 1 && button_status == 6) {
+          $("#button_sign").removeAttr("disabled");
+          $("#button_sign").on("click", function () {
+            alert("Sign Up Success !");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
